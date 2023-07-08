@@ -4,13 +4,14 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var session = require('express-session');
 const { render } = require('express/lib/response');
+require('dotenv').config();
 
 var app = express();
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-app.listen(8080);
+app.listen(process.env.PORT);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: "secret" }));
 
@@ -38,10 +39,10 @@ function calculateTotal(cart, req) {
 
 app.get('/', function (req, res) {
   var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "project"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
   });
   con.query("SELECT * FROM product", (err, result) => {
     res.render('pages/index', { result: result });
@@ -167,10 +168,10 @@ var products_ids = "";
 
 
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "project"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
   });
 
   var cart = req.session.cart;
@@ -213,10 +214,10 @@ app.get('/payment',function(req,res){
 app.get('/single_product',function(req,res){
     var id = req.query.id;
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "project"
+      host: process.env.DB_HOST,
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
       });
       con.query("SELECT * FROM product WHERE id='"+id+"'", (err, result) => {
         res.render('pages/single_products', { result: result });
@@ -226,10 +227,10 @@ app.get('/single_product',function(req,res){
 
 app.get('/products',function(req,res){
     var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "project"
+      host: process.env.DB_HOST,
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
       });
       con.query("SELECT * FROM product", (err, result) => {
         res.render('pages/products', { result: result });
