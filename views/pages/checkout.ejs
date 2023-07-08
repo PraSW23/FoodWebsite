@@ -42,7 +42,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="/">
             <span>
               calmandcode
             </span>
@@ -55,20 +55,20 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home </a>
+                <a class="nav-link" href="/">Home </a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="products.html">Menu <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="products">Menu <span class="sr-only">(current)</span> </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="about">About</a>
               </li>
             </ul>
             <div class="user_option">
          <!--      <a href="" class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </a> -->
-              <a class="cart_link" href="#">
+              <a class="cart_link" href="cart">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
                     <g>
@@ -154,7 +154,7 @@
     <section class="my-2 py-3 checkout">
 
         <div class="mx-auto container">
-            <form id="checkout-form" >
+            <form id="checkout-form" method="post" action="/place_order">
                 <div class="form-group checkout-small-element">
                     <label for="">Name</label>
                     <input type="text" class="form-control" id="checkout-name" name="name" placeholder="name" required>
@@ -183,7 +183,7 @@
 
 
                 <div class="form-group checkout-btn-container">
-                    <p>Total amount: $199</p>
+                    <p>Total amount: $<%= total %></p>
                     <input type="submit" class="btn" id="checkout-btn" name="checkout_btn" value="Checkout">
                 </div>
    
