@@ -5,7 +5,6 @@ var mysql = require('mysql');
 var session = require('express-session');
 const { render } = require('express/lib/response');
 require('dotenv').config();
-
 var app = express();
 
 app.use(express.static('public'));
@@ -18,7 +17,7 @@ app.use(session({ secret: "secret" }));
 var pool = mysql.createPool({
   connectionLimit: 10,
   host: process.env.DB_HOST,
-  user: process.env.DB_USER,
+  user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 });
@@ -216,7 +215,7 @@ app.get('/single_product',function(req,res){
 
 
 app.get('/products',function(req,res){
-    
+  
       pool.query("SELECT * FROM product", (err, result) => {
         res.render('pages/products', { result: result });
       });
